@@ -1,0 +1,14 @@
+{
+  "name": "jest-mock-demo",
+  "version": "1.0.0",
+  "description": "Jest mocking demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Robert J. Walker",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
