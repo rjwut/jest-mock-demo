@@ -1,8 +1,12 @@
 /*
  * A spy is a mock function that wraps an existing method. You can install a spy by invoking the
  * `jest.spyOn()` method, passing in the object and method name you want to spy on. It will return
- * the mock function which wraps the original method. Invoking `mockRestore()` on the mock function
- * will restore the original method, disabling the spy.
+ * the mock function which wraps the original method.
+ *
+ * Once more, it's important to prevent spies from spanning tests. The safest way is to only spy on
+ * objects that are created within `beforeEach()` or the test itself. If that's not feasible, you
+ * can use `jest.restoreAllMocks()` to remove all spies, or invoke `mockRestore()` on an individual
+ * spy to remove it.
  */
 const Dog = require('./dog');
 
@@ -12,11 +16,6 @@ beforeEach(() => {
   dog = new Dog('Fritz');
   barkSpy = jest.spyOn(dog, 'bark');        // spy on the bark() method
   nameSpy = jest.spyOn(dog, 'name', 'get'); // spy on the name getter
-});
-
-afterEach(() => {
-  barkSpy.mockRestore();
-  nameSpy.mockRestore();
 });
 
 /**
