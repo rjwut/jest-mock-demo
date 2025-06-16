@@ -1,7 +1,13 @@
 /*
- * Manually mocking a built-in module. This loads the mock defined in `__mocks__/fs/promises.js`.
- * Alternatively, we could have provided a mock factory function as the second argument to create a
- * one-off mock for only this test file.
+ * Manually mocking a module. This loads the mock defined in `__mocks__/fs/promises.js`. This is
+ * where mocks for packages and built-in modules should be defined. To mock a module that's within
+ * the project itself, you must create a `__mocks__` directory at the same level as the module being
+ * mocked, then create the mock module file under it. For example, to mock a module located at
+ * `src/widget-factory.js`, you would create a file at `src/__mocks__/widget-factory.js`.
+ *
+ * These mocks can be used by any test suite. Alternatively, you can create a mock factory function
+ * that returns a mock module, which can be passed as the second argument to `jest.mock()`. This
+ * allows you to create a one-off mock for a specific test suite without affecting other suites.
  *
  * If you don't specify a mock factory function, and no manual mock module exists, Jest will
  * automock the module:
